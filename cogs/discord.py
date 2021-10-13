@@ -88,6 +88,7 @@ class Discord_Info(commands.Cog):
             await ctx.send(content=f"ℹ information about **{ctx.guild.name}**", embed=embed)
 
     @server.command(name="avatar", aliases=["icon"])
+    @commands.guild_only()
     async def server_avatar(self, ctx):
         """ Get the current server icon """
         if not ctx.guild.icon:
