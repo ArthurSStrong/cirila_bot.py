@@ -12,11 +12,11 @@ class Reply(commands.Cog):
         self.bot = bot
         self.config = default.config()
         self.process = psutil.Process(os.getpid())
-        self.affection_triggers = textreplies.get_af_det
-        self.affection_responses = textreplies.get_af_resp
-        self.chat_replies = textreplies.get_chat_replies
-        self.replies = textreplies.get_replies
-        self.default_responses = textreplies.get_def_resp
+        self.affection_triggers = textreplies.get_af_det()
+        self.affection_responses = textreplies.get_af_resp()
+        self.chat_replies = textreplies.get_chat_replies()
+        self.replies = textreplies.get_replies()
+        self.default_responses = textreplies.get_def_resp()
 
     @commands.Cog.listener()
     async def on_message(self, message: Message) -> None:
