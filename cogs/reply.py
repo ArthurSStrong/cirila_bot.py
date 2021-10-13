@@ -8,6 +8,10 @@ import random
 import psutil
 
 class Reply(commands.Cog):
+    '''
+    Reply oject is a cog for the discord.py bot class it extends from it
+    :param bot: discord.py bot object
+    '''
     def __init__(self, bot):
         self.bot = bot
         self.config = default.config()
@@ -20,6 +24,12 @@ class Reply(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: Message) -> None:
+        '''on_message async function will listen to chat comments in discord trhu cog.listener decorator
+        it uses the textreplies statics functions to read the list of responses from txt and csv files
+
+        Args:
+            message (Message): discord.py Message Object
+        '''
         #print("on_message")
         if (guild := message.guild) is None or message.author.bot:
             return
