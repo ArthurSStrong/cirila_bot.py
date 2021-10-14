@@ -47,7 +47,7 @@ class Reply(commands.Cog):
             await channel.send("https://cdn.discordapp.com/attachments/821542780730998844/869682132316995635/image0-1-1-1-1-1.png")
             await self.bot.process_commands(message)
 
-        if me.user.mentioned_in(message):
+        if me.mentioned_in(message):
             if any(map(message.content.lower().__contains__, self.affection_triggers)):
                 resp = random.choice(self.affection_responses)
                 await channel.send(resp)
@@ -59,3 +59,7 @@ class Reply(commands.Cog):
         else:
             if resp := textreplies.get_any_dict(self.chat_replies, message.content.lower()):
                 await channel.send(resp)
+
+
+def setup(bot):
+    bot.add_cog(Reply(bot))
