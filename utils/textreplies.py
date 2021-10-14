@@ -1,10 +1,14 @@
 import csv
+from pathlib import Path
 
-AF_DET = './txt/afecto_detonador.txt'
-AF_RESP = './txt/afecto_respuesta.txt'
-RESP_DEF = './txt/respuestas_por_defecto.txt'
-REPLIES = './txt/contestaciones.csv'
-CHAT_REPLIES = './txt/chat_detonador.csv'
+
+data_folder = Path("utils/txt")
+
+AF_DET = data_folder / "afecto_detonador.txt"
+AF_RESP = data_folder / "afecto_respuesta.txt"
+RESP_DEF = data_folder / "respuestas_por_defecto.txt"
+REPLIES = data_folder / "contestaciones.csv"
+CHAT_REPLIES = data_folder / "chat_detonador.csv"
 
 
 def _load_replies(file):
@@ -25,7 +29,7 @@ def _load_file(file):
     Returns
     -------
     list
-        A list of urls.
+        A list of strings.
     """
 
     try:
