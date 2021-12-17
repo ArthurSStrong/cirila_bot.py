@@ -15,6 +15,7 @@ class Fun_Commands(commands.Cog):
         self.config = default.config()
 
     @commands.command(aliases=["dime-cirila"])
+    @commands.has_role("Mujicano")
     async def dimecirila(self, ctx, *, question: commands.clean_content):
         """ Consult 8ball to receive an answer """
         ballresponse = [
@@ -52,24 +53,30 @@ class Fun_Commands(commands.Cog):
             await ctx.send(content=content, file=discord.File(bio, filename=filename))
 
     @commands.command()
+    @commands.has_role("Mujicano")
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
     async def duck(self, ctx):
         """ Posts a random duck """
         await self.randomimageapi(ctx, "https://random-d.uk/api/v1/random", "url")
 
     @commands.command()
+    @commands.has_role("Mujicano")
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
     async def coffee(self, ctx):
         """ Posts a random coffee """
         await self.randomimageapi(ctx, "https://coffee.alexflipnote.dev/random.json", "file")
 
     @commands.command(aliases=["flip", "coin"])
+    @commands.has_role("Mujicano")
+    @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
     async def coinflip(self, ctx):
         """ Coinflip! """
         coinsides = ["Cara", "Cruz"]
         await ctx.send(f"**{ctx.author.name}** lanzó una moneda y cayó:  **{random.choice(coinsides)}**!")
 
     @commands.command()
+    @commands.has_role("Mujicano")
+    @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
     async def f(self, ctx, *, text: commands.clean_content = None):
         """ Press F to pay respect """
         hearts = ["❤", "💛", "💚", "💙", "💜"]
@@ -77,6 +84,7 @@ class Fun_Commands(commands.Cog):
         await ctx.send(f"**{ctx.author.name}** ha presionado [F] para mostrar su respeto! {reason}{random.choice(hearts)}")
 
     @commands.command()
+    @commands.has_role("Mujicano")
     @commands.cooldown(rate=1, per=2.0, type=commands.BucketType.user)
     async def urban(self, ctx, *, search: commands.clean_content):
         """ Find the 'best' definition to your words """
@@ -103,6 +111,8 @@ class Fun_Commands(commands.Cog):
             await ctx.send(f"📚 Definitions for **{result['word']}**```fix\n{definition}```")
 
     @commands.command()
+    @commands.has_role("Mujicano")
+    @commands.cooldown(rate=1, per=2.0, type=commands.BucketType.user)
     async def reverse(self, ctx, *, text: str):
         """ !poow ,ffuts esreveR
         Everything you type after reverse will of course, be reversed
@@ -124,12 +134,16 @@ class Fun_Commands(commands.Cog):
     #     await ctx.author.send(f"🎁 **Here is your password:**\n{secrets.token_urlsafe(nbytes)}")
 
     @commands.command()
+    @commands.has_role("Mujicano")
+    @commands.cooldown(rate=1, per=2.0, type=commands.BucketType.user)
     async def rate(self, ctx, *, thing: commands.clean_content):
         """ Rates what you desire """
         rate_amount = random.uniform(0.0, 100.0)
         await ctx.send(f"I'd rate `{thing}` a **{round(rate_amount, 4)} / 100**")
 
     @commands.command()
+    @commands.has_role("Mujicano")
+    @commands.cooldown(rate=1, per=2.0, type=commands.BucketType.user)
     async def comprarcerveza(self, ctx, user: discord.Member = None, *, reason: commands.clean_content = ""):
         """ Give someone a beer! 🍻 """
         if not user or user.id == ctx.author.id:
@@ -162,6 +176,8 @@ class Fun_Commands(commands.Cog):
             await msg.edit(content=beer_offer)
 
     @commands.command(aliases=["es-sexy", "es-hot"])
+    @commands.has_role("Mujicano")
+    @commands.cooldown(rate=1, per=2.0, type=commands.BucketType.user)
     async def sexyono(self, ctx, *, user: discord.Member = None):
         """ Returns a random percent for how hot is a discord user """
         user = user or ctx.author
@@ -182,6 +198,8 @@ class Fun_Commands(commands.Cog):
         await ctx.send(f"**{user.name}** es **{hot:.2f}%** sepsi {emoji}")
 
     @commands.command(aliases=["notame-sempai"])
+    @commands.has_role("Mujicano")
+    @commands.cooldown(rate=1, per=2.0, type=commands.BucketType.user)
     async def noticeme(self, ctx):
         """ Notice me senpai! owo """
         if not permissions.can_handle(ctx, "attach_files"):
