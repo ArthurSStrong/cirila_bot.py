@@ -55,7 +55,7 @@ class Fun_Commands(commands.Cog):
     @commands.command()
     @commands.has_role("Mujicano")
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
-    async def duck(self, ctx):
+    async def patas(self, ctx):
         """ Posts a random duck """
         await self.randomimageapi(ctx, "https://random-d.uk/api/v1/random", "url")
 
