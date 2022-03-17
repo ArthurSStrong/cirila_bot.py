@@ -14,18 +14,18 @@ class Fun_Commands(commands.Cog):
         self.bot = bot
         self.config = default.config()
 
-    @commands.command(aliases=["8ball"])
-    async def eightball(self, ctx, *, question: commands.clean_content):
+    @commands.command(aliases=["dime-cirila"])
+    async def dimecirila(self, ctx, *, question: commands.clean_content):
         """ Consult 8ball to receive an answer """
         ballresponse = [
-            "Yes", "No", "Take a wild guess...", "Very doubtful",
-            "Sure", "Without a doubt", "Most likely", "Might be possible",
-            "You'll be the judge", "no... (╯°□°）╯︵ ┻━┻", "no... baka",
+            "Simón", "Nel", "Al chile quien sabe...", "Lo dudo bebé..",
+            "A huevo!", "Sin duda", "Parece que si", "Tal vez",
+            "Ya callate wey", "no... (╯°□°）╯︵ ┻━┻", "no... baka",
             "senpai, pls no ;-;"
         ]
 
         answer = random.choice(ballresponse)
-        await ctx.send(f"🎱 **Question:** {question}\n**Answer:** {answer}")
+        await ctx.send(f"🎱 **Le preguntaste a Cirila:** {question}\n**Cirila dice:** {answer}")
 
     async def randomimageapi(self, ctx, url: str, endpoint: str, token: str = None):
         try:
@@ -130,7 +130,7 @@ class Fun_Commands(commands.Cog):
         await ctx.send(f"I'd rate `{thing}` a **{round(rate_amount, 4)} / 100**")
 
     @commands.command()
-    async def beer(self, ctx, user: discord.Member = None, *, reason: commands.clean_content = ""):
+    async def comprarcerveza(self, ctx, user: discord.Member = None, *, reason: commands.clean_content = ""):
         """ Give someone a beer! 🍻 """
         if not user or user.id == ctx.author.id:
             return await ctx.send(f"**{ctx.author.name}**: paaaarty!🎉🍺")
@@ -161,8 +161,8 @@ class Fun_Commands(commands.Cog):
             beer_offer = f"{beer_offer}\n\n**Reason:** {reason}" if reason else beer_offer
             await msg.edit(content=beer_offer)
 
-    @commands.command(aliases=["howhot", "hot"])
-    async def hotcalc(self, ctx, *, user: discord.Member = None):
+    @commands.command(aliases=["es-sexy", "es-hot"])
+    async def sexyono(self, ctx, *, user: discord.Member = None):
         """ Returns a random percent for how hot is a discord user """
         user = user or ctx.author
 
@@ -179,9 +179,9 @@ class Fun_Commands(commands.Cog):
         else:
             emoji = "💔"
 
-        await ctx.send(f"**{user.name}** is **{hot:.2f}%** hot {emoji}")
+        await ctx.send(f"**{user.name}** es **{hot:.2f}%** sepsi {emoji}")
 
-    @commands.command(aliases=["noticemesenpai"])
+    @commands.command(aliases=["notame-sempai"])
     async def noticeme(self, ctx):
         """ Notice me senpai! owo """
         if not permissions.can_handle(ctx, "attach_files"):
@@ -189,6 +189,7 @@ class Fun_Commands(commands.Cog):
 
         bio = BytesIO(await http.get("https://i.alexflipnote.dev/500ce4.gif", res_method="read"))
         await ctx.send(file=discord.File(bio, filename="noticeme.gif"))
+
 
     @commands.command(aliases=["slots", "bet"])
     async def slot(self, ctx):

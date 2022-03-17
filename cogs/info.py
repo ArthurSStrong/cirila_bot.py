@@ -4,7 +4,8 @@ import psutil
 import os
 
 from discord.ext import commands
-from utils import default, http
+from utils import permissions, default, http
+
 
 
 class Information(commands.Cog):
@@ -14,6 +15,7 @@ class Information(commands.Cog):
         self.process = psutil.Process(os.getpid())
 
     @commands.command()
+    @commands.check(permissions.is_owner)
     async def ping(self, ctx):
         """ Pong! """
         before = time.monotonic()
@@ -23,11 +25,13 @@ class Information(commands.Cog):
         await message.edit(content=f"🏓 WS: {before_ws}ms  |  REST: {int(ping)}ms")
 
     @commands.command(aliases=["joinme", "join", "botinvite"])
+    @commands.check(permissions.is_owner)
     async def invite(self, ctx):
         """ Invite me to your server """
         await ctx.send(f"**{ctx.author.name}**, use this URL to invite me\n<{discord.utils.oauth_url(self.bot.user.id)}>")
 
     @commands.command()
+    @commands.check(permissions.is_owner)
     async def source(self, ctx):
         """ Check out my source code <3 """
         # Do not remove this command, this has to stay due to the GitHub LICENSE.
@@ -36,6 +40,7 @@ class Information(commands.Cog):
         await ctx.send(f"**{ctx.bot.user}** is powered by this source code:\nhttps://github.com/AlexFlipnote/discord_bot.py")
 
     @commands.command(aliases=["supportserver", "feedbackserver"])
+    @commands.check(permissions.is_owner)
     async def botserver(self, ctx):
         """ Get an invite to our support server! """
         if isinstance(ctx.channel, discord.DMChannel) or ctx.guild.id != 86484642730885120:
@@ -43,6 +48,7 @@ class Information(commands.Cog):
         await ctx.send(f"**{ctx.author.name}** this is my home you know :3")
 
     @commands.command()
+    @commands.check(permissions.is_owner)
     async def covid(self, ctx, *, country: str):
         """Covid-19 Statistics for any countries"""
         async with ctx.channel.typing():
@@ -74,6 +80,7 @@ class Information(commands.Cog):
             )
 
     @commands.command(aliases=["info", "stats", "status"])
+    @commands.check(permissions.is_owner)
     async def about(self, ctx):
         """ About the bot """
         ramUsage = self.process.memory_full_info().rss / 1024**2
