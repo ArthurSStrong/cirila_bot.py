@@ -210,6 +210,7 @@ class Fun_Commands(commands.Cog):
 
 
     @commands.command(aliases=["slots", "bet"])
+    @commands.has_role("Mujicano")
     async def slot(self, ctx):
         """ Roll the slot machine """
         emojis = "🍎🍊🍐🍋🍉🍇🍓🍒"
