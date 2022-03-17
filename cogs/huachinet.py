@@ -92,12 +92,12 @@ class Huachinet(commands.Cog):
 
 
     @commands.command(aliases=["chocorrol", 'dar-role'])
-    @commands.guild_only()
+    @commands.has_role("Testigo de la Crepa")
     async def role(self, ctx, user: discord.Member, *, role: discord.Role):
         """ Ya no hay chocorroles """
         if role.position > ctx.author.top_role.position:  # if the role is above users top role it sends error
             await ctx.send('**:x: | Este rol es superior al tuyo!**')
-        if role in user.roles:
+        elif role in user.roles:
             await user.remove_roles(role)  # removes the role if user already has
             await ctx.send(f"Removido {role} de {user.mention}")
         else:
@@ -107,6 +107,7 @@ class Huachinet(commands.Cog):
 
     @commands.command(aliases=["levanton", 'asalto'])
     @commands.check(permissions.is_owner)
+    @commands.has_role("Testigo de la Crepa")
     async def atraco(self, ctx):
         """ Atraco hijodetuputamadre """
         if (guild := ctx.message.guild) is None or ctx.message.author.bot:

@@ -48,7 +48,7 @@ class Discord_Info(commands.Cog):
         await ctx.send(f"🖼 Avatar to **{user}**", embed=embed)
 
     @commands.command()
-    @commands.guild_only()
+    @commands.has_role("Testigo de la Crepa")
     async def roles(self, ctx):
         """ Get all roles in current server """
         allroles = ""
@@ -59,8 +59,8 @@ class Discord_Info(commands.Cog):
         data = BytesIO(allroles.encode("utf-8"))
         await ctx.send(content=f"Roles in **{ctx.guild.name}**", file=discord.File(data, filename=f"{default.timetext('Roles')}"))
 
-    @commands.command(aliases=["joindate", "joined"])
-    @commands.guild_only()
+    @commands.command()
+    @commands.has_role("Testigo de la Crepa")
     async def joinedat(self, ctx, *, user: discord.Member = None):
         """ Check when a user joined the current server """
         user = user or ctx.author
@@ -70,7 +70,7 @@ class Discord_Info(commands.Cog):
         )
 
     @commands.command()
-    @commands.guild_only()
+    @commands.has_role("Testigo de la Crepa")
     async def mods(self, ctx):
         """ Check which mods are online on current guild """
         message = ""
@@ -94,7 +94,7 @@ class Discord_Info(commands.Cog):
         await ctx.send(f"Mods in **{ctx.guild.name}**\n{message}")
 
     @commands.group()
-    @commands.guild_only()
+    @commands.has_role("Testigo de la Crepa")
     async def server(self, ctx):
         """ Check info about current server """
         if ctx.invoked_subcommand is None:
@@ -145,7 +145,7 @@ class Discord_Info(commands.Cog):
         await ctx.send(f"Banner of **{ctx.guild.name}**\n{ctx.guild.banner.with_format('png')}")
 
     @commands.command()
-    @commands.guild_only()
+    @commands.has_role("Testigo de la Crepa")
     async def user(self, ctx, *, user: discord.Member = None):
         """ Get user information """
         user = user or ctx.author
