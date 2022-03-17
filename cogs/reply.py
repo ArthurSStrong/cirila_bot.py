@@ -61,5 +61,5 @@ class Reply(commands.Cog):
                 await channel.send(resp)
 
 
-def setup(bot):
-    bot.add_cog(Reply(bot))
+async def setup(bot):
+    await bot.add_cog(Reply(bot))
